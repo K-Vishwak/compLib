@@ -1,0 +1,56 @@
+<p>form works!</p>
+
+<!--Normal Form Control.-->
+<div>
+    <label for="name">Name: </label>
+    <input type="text" id="name" [formControl]="nameControl" (keydown.enter)="inputClick()" />
+    <div *ngIf="nameControl.errors?.['required']">Enter Valid Name</div>
+</div>
+<br>
+<div>
+    <button (click)="updateValue()">Update Value</button>
+</div>
+<br>
+
+<!--Reactive Forms-->
+<div>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+        <label for="first-name">First Name: </label>
+        <input id="first-name" type="text" [formControl]="profileForm.controls.firstName">
+
+        <div *ngIf="firstName.errors?.['required']">Enter Valid Name</div>
+        <div *ngIf="firstName.errors?.['minlength']">Enter Min 4 char</div>
+
+        <br>
+        <br>
+        <label for="last-name">Last Name: </label>
+        <input id="last-name" type="text" [formControl]="profileForm.controls.lastName">
+
+        <p>Complete the form to enable button.</p>
+        <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    </form>
+
+</div>
+
+<!--Template driven Forms-->
+
+<div>
+    <form (ngSubmit)="onSubmit1()" #heroFrom="ngForm">
+
+        <label for="first-name">First Name: </label>
+        <input id="first-name" type="text" [(ngModel)]="firstName1" #test="ngModel" required minlength="4">
+
+        <div *ngIf="test.errors?.['required']">Enter Valid Name</div>
+        <div *ngIf="test.errors?.['minlength']">Enter Min 4 char</div>
+
+        <br>
+        <br>
+        <label for="last-name">Last Name: </label>
+        <input id="last-name" type="text" [(ngModel)]="lastName">
+
+        <p>Complete the form to enable button.</p>
+        <button type="submit" [disabled]="!heroFrom.valid">Submit</button>
+    </form>
+
+</div>

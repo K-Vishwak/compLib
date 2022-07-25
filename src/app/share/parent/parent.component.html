@@ -1,0 +1,7 @@
+<p>parent works!</p>
+
+<button (click)="callChildMethod()">Call Child</button>
+
+<app-child #child [parentProp]="parentProp" (callItsParent)="callParent($event)"></app-child>
+
+<app-child2 #child1 [fromChild]="parentProp"></app-child2>

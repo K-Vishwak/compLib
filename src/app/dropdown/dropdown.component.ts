@@ -1,27 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css'],
+  styleUrls: ['./dropdown.component.scss'],
 })
 export class DropdownComponent implements OnInit {
-  constructor() {}
+  constructor() { }
   selectContent = ['IND', 'USA', 'UK'];
   customContent = [
-    {id: 0, name: 'All', icon: 'src/app/assets/all.svg'},
-    { id: 1, name: 'IND', icon: './assets/in.svg' },
-    { id: 2, name: 'USA', icon: './assets/ua.svg' },
-    { id: 3, name: 'UK', icon: './assets/us.svg'},
+    { id: 0, name: 'ALL', icon: 'all', checked: false },
+    { id: 1, name: 'IND', icon: 'in', checked: false },
+    { id: 2, name: 'USA', icon: 'us', checked: false },
+    { id: 3, name: 'UA', icon: 'ua', checked: false },
   ];
-  dropdownText: string;
+  dropdownText = '';
   showDropdown = false;
+  // @Input()
+  isSingleSelect = true;
 
   ngOnInit() {
+    // optional
+    if (this.isSingleSelect) {
+      this.customContent = this.customContent.splice(1);
+    }
   }
 
-  selectedItem(event) {
-    console.log(event.target.value);
+  ngOnChanges() {
+    if (this.isSingleSelect) {
+      this.customContent.splice(1);
+    }
   }
 
   captureValues() {
@@ -34,11 +42,37 @@ export class DropdownComponent implements OnInit {
         result.push(item.value);
       }
     }
-    console.log(result);
   }
 
   setContent(item) {
-    this.dropdownText = item.name;
+    this.showDropdown = true;
+    if (this.isSingleSelect) {
+      this.dropdownText = !item.checked ? item.name : '';
+      this.customContent.forEach(data => {
+        data.checked = (data.name === item.name && !item.checked);
+      });
+    } else {
+      const allItem = this.customContent.find(item => item.name === 'ALL');
+      if (item.name !== 'ALL') {
+        this.customContent.forEach(data => {
+          if (data.name === item.name) {
+            data.checked = !item.checked;
+          }
+          if (item.checked) {
+            allItem.checked = !item.checked;
+          }
+        });
+        this.dropdownText = this.customContent.filter(item => item.checked).map(data => data.name).join(',');
+        if ((this.customContent.length - 1) === this.customContent.filter(item => item.checked).length) {
+          this.dropdownText = 'ALL';
+          allItem.checked = true;
+        }
+      } else {
+        this.dropdownText = !item.checked ? 'ALL' : '';
+        allItem.checked = !item.checked;
+        this.customContent.forEach(data => data.checked = allItem.checked);
+      }
+    }
   }
 
   identify = (index) => {

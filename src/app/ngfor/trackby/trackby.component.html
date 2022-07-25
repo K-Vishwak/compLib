@@ -1,0 +1,5 @@
+<p>trackby works!</p>
+
+<p *ngFor="let item of students; trackby:identify">{{item.name}}</p>
+
+<button (click)="refresh()">Refresh</button>
