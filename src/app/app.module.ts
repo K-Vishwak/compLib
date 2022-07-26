@@ -13,7 +13,8 @@ import { ShareService } from './share.service';
 import { FormComponent } from './forms/form/form.component';
 import { TrackbyComponent } from './ngfor/trackby/trackby.component';
 import { CenteralignComponent } from './center-align/centeralign/centeralign.component';
-import { ClickoutDirective } from './clickout.directive';
+import { ClickoutDirective } from './directives/clickout.directive';
+
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule ],

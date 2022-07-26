@@ -12,12 +12,17 @@ export class DropdownComponent implements OnInit {
     { id: 0, name: 'ALL', icon: 'all', checked: false },
     { id: 1, name: 'IND', icon: 'in', checked: false },
     { id: 2, name: 'USA', icon: 'us', checked: false },
-    { id: 3, name: 'UA', icon: 'ua', checked: false },
+    { id: 3, name: 'UE', icon: 'ua', checked: false },
+    { id: 4, name: 'UB', icon: 'ua', checked: false },
+    { id: 5, name: 'USB', icon: 'us', checked: false },
+    { id: 6, name: 'INR', icon: 'in', checked: false },
+    { id: 7, name: 'INC', icon: 'in', checked: false },
+    { id: 8, name: 'UK', icon: 'ua', checked: false },
   ];
   dropdownText = '';
   showDropdown = false;
   // @Input()
-  isSingleSelect = true;
+  isSingleSelect = false;
 
   ngOnInit() {
     // optional
@@ -72,6 +77,12 @@ export class DropdownComponent implements OnInit {
         allItem.checked = !item.checked;
         this.customContent.forEach(data => data.checked = allItem.checked);
       }
+    }
+  }
+
+  filterItems() {
+    if (this.dropdownText.trim()) {
+      this.customContent = this.customContent.filter(item => item.name.toLowerCase().startsWith(this.dropdownText.toLowerCase()));
     }
   }
 
