@@ -23,8 +23,10 @@ export class DropdownComponent implements OnInit {
   showDropdown = false;
   // @Input()
   isSingleSelect = false;
+  cloneContent = [];
 
   ngOnInit() {
+     this.cloneContent = JSON.parse(JSON.stringify(this.customContent));
     // optional
     if (this.isSingleSelect) {
       this.customContent = this.customContent.splice(1);
@@ -82,7 +84,9 @@ export class DropdownComponent implements OnInit {
 
   filterItems() {
     if (this.dropdownText.trim()) {
-      this.customContent = this.customContent.filter(item => item.name.toLowerCase().startsWith(this.dropdownText.toLowerCase()));
+      this.customContent = this.cloneContent.filter(item => item.name.toLowerCase().startsWith(this.dropdownText.toLowerCase()));
+    } else {
+      this.customContent = this.cloneContent;
     }
   }
 

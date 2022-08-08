@@ -1,0 +1,6 @@
+<h2>Rate my work!</h2>
+<ng-container *ngFor="let i of list; let j=index">
+<i class="star" (click)="count(j)"></i>
+</ng-container>
+
+<p>Rate: {{rate}}</p>

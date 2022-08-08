@@ -1,12 +1,13 @@
 <h2>Custom Dropdown (Single & Multi)</h2>
 <div appClickout (clickOutSide)="showDropdown = false;" class="custom">
-    <input class="custom-input" type="text" (click)="showDropdown = true" [(ngModel)]="dropdownText" />
+    <input class="custom-input" type="text" (click)="showDropdown = true" [(ngModel)]="dropdownText"
+        placeholder="Search & Select" (keyup)="filterItems()" />
     <div class="content" *ngIf="showDropdown">
         <ul class="custom-list">
             <li *ngFor="let item of customContent" (click)="setContent(item);">
-                <input type="checkbox" class="check-box" [(ngModel)]="item.checked"
-                    name="dropdown_select" />{{item.name}}<span class="logo-{{item.icon}}"></span>
-            </li>
+                <input type="checkbox" class="check-box"
+                    [(ngModel)]="item.checked" name="dropdown_select" />{{item.name}}<span
+                    class="logo-{{item.icon}}"></span></li>
         </ul>
     </div>
 </div>
