@@ -1,0 +1,21 @@
+.pop-over {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 16rem;
+    padding: 8rem;
+    z-index: 1;
+    box-shadow: 5px 10px grey;
+}
+
+.pop-over::before {
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent grey transparent;
+    top: -20px;
+    left: 4px;
+    content: "";
+    position: absolute;
+}

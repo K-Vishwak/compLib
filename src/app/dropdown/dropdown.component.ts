@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {concat, filter, cloneDeep} from 'lodash';
 
 @Component({
   selector: 'app-dropdown',
@@ -27,6 +28,7 @@ export class DropdownComponent implements OnInit {
 
   ngOnInit() {
      this.cloneContent = JSON.parse(JSON.stringify(this.customContent));
+     console.log(cloneDeep(this.customContent));
     // optional
     if (this.isSingleSelect) {
       this.customContent = this.customContent.splice(1);

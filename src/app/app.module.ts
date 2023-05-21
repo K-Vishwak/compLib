@@ -25,11 +25,14 @@ import { CalloutComponent } from './directives/callout/callout.component';
 import { CalloutDirective } from './directives/callout.directive';
 import { AnimatedIfDirective } from './directives/animated-if.directive';
 import { AnimationifComponent } from './directives/animationif/animationif.component';
+import { PopoverComponent } from './popover/popover.component';
+import { CombinatorComponent } from './combinator/combinator.component';
+import { LayoutsComponent } from './layouts/layouts.component';
 
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, CommonModule ],
-  declarations: [ AppComponent, HelloComponent, DropdownComponent, ParentComponent, Parent1Component, ChildComponent, Child2Component, FormComponent, TrackbyComponent, CenteralignComponent, ClickoutDirective, StarRatingComponent, CustomInputComponent, CvaInputComponent, HighlightDirective, RainbowDirective, CalloutComponent, CalloutDirective, AnimatedIfDirective, AnimationifComponent ],
+  declarations: [ AppComponent, HelloComponent, DropdownComponent, ParentComponent, Parent1Component, ChildComponent, Child2Component, FormComponent, TrackbyComponent, CenteralignComponent, ClickoutDirective, StarRatingComponent, CustomInputComponent, CvaInputComponent, HighlightDirective, RainbowDirective, CalloutComponent, CalloutDirective, AnimatedIfDirective, AnimationifComponent, PopoverComponent, CombinatorComponent, LayoutsComponent ],
   bootstrap:    [ AppComponent ],
   providers: [ShareService]
 })

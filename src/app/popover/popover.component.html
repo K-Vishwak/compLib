@@ -1,0 +1,5 @@
+<p (mouseover)="showPopOver = true" (mouseleave)="showPopOver = false">Show Pop Over!</p>
+
+<div *ngIf="showPopOver" class="pop-over">
+    <p>It's a pop-over</p>
+</div>
